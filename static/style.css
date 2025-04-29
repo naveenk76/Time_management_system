@@ -1,0 +1,38 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #555;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.btn {
+    margin-right: 5px;
+}
+
+.navbar {
+    border-bottom: 2px solid #ddd;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+}
+
+.alert {
+    font-size: 0.875rem;
+}

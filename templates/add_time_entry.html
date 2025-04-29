@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">{{ 'Edit' if edit else 'Add New' }} Time Entry</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.title.label(class="form-label") }}
+            {{ form.title(class="form-control", placeholder="Enter title") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.description.label(class="form-label") }}
+            {{ form.description(class="form-control", rows=3, placeholder="Enter description") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.start_time.label(class="form-label") }}
+            {{ form.start_time(class="form-control", type="datetime-local") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.end_time.label(class="form-label") }}
+            {{ form.end_time(class="form-control", type="datetime-local") }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">{{ 'Update' if edit else 'Create' }} Entry</button>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>
+{% endblock %}

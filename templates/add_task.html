@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-4">{{ 'Edit' if edit else 'Add New' }} Task</h2>
+<form method="POST" class="card p-4 shadow-sm">
+    {{ form.hidden_tag() }}
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field, errors in form.errors.items() %}
+                {% for error in errors %}
+                    <li><strong>{{ form[field].label }}</strong>: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    <div class="mb-3">
+        {{ form.title.label }}
+        {{ form.title(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.description.label }}
+        {{ form.description(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.due_date.label }}
+        {{ form.due_date(class="form-control", type="datetime-local", value=form.due_date.data.strftime('%Y-%m-%dT%H:%M') if form.due_date.data else '') }}
+    </div>
+    <button type="submit" class="btn btn-success">{{ 'Update' if edit else 'Add' }}</button>
+</form>
+{% endblock %}

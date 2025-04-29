@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-3">Your Time Entries</h2>
+<a href="{{ url_for('new_time_entry') }}" class="btn btn-primary btn-sm mb-4">+ New Time Entry</a>
+
+{% if time_entries %}
+    <div class="row">
+        {% for time_entry in time_entries %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card {% if time_entry.end_time < current_time %}bg-success text-white{% else %}bg-light{% endif %}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ time_entry.title }}</h5>
+                    <p class="card-text">{{ time_entry.description }}</p>
+                    <small>
+                        Start: {{ time_entry.start_time.strftime('%Y-%m-%d %H:%M') }}<br>
+                        End: {{ time_entry.end_time.strftime('%Y-%m-%d %H:%M') }}
+                    </small>
+                    <div class="mt-3">
+                        <a href="{{ url_for('view_time_entry', time_entry_id=time_entry.id) }}" class="btn btn-info btn-sm">View</a>
+                        <a href="{{ url_for('edit_time_entry', time_entry_id=time_entry.id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{{ url_for('delete_time_entry', time_entry_id=time_entry.id) }}" class="btn btn-danger btn-sm">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info">No time entries yet. <a href="{{ url_for('new_time_entry') }}" class="alert-link">Create one</a>.</div>
+{% endif %}
+{% endblock %}

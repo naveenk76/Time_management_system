@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Register</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    <div class="mb-3">
+        {{ form.username.label }}
+        {{ form.username(class="form-control") }}
+        {% if form.username.errors %}
+            <div class="text-danger small">
+                {{ form.username.errors[0] }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.email.label }}
+        {{ form.email(class="form-control") }}
+        {% if form.email.errors %}
+            <div class="text-danger small">
+                {{ form.email.errors[0] }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.password.label }}
+        {{ form.password(class="form-control") }}
+        {% if form.password.errors %}
+            <div class="text-danger small">
+                {{ form.password.errors[0] }}
+            </div>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-success">Register</button>
+</form>
+{% endblock %}

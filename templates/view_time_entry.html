@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-3">{{ time_entry.title }}</h2>
+
+    <p><strong>Description:</strong></p>
+    <p>{{ time_entry.description or 'No description provided.' }}</p>
+
+    <p><strong>Start Time:</strong> {{ time_entry.start_time.strftime('%Y-%m-%d %H:%M') }}</p>
+    <p><strong>End Time:</strong> {{ time_entry.end_time.strftime('%Y-%m-%d %H:%M') }}</p>
+
+    <div class="mt-4">
+        <a href="{{ url_for('edit_time_entry', time_entry_id=time_entry.id) }}" class="btn btn-warning">Edit</a>
+        <a href="{{ url_for('delete_time_entry', time_entry_id=time_entry.id) }}" class="btn btn-danger">Delete</a>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}
